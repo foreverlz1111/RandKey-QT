@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>730</width>
+    <height>440</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>730</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>730</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QSlider" name="length_slider">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>220</y>
+      <width>451</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+    background: #ccc;
+    height: 6px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #ffffff;
+    width: 18px;
+    height: 18px;
+    margin: -6px 0;
+    border-radius: 9px;
+	
+	border-color: rgb(85, 255, 255);
+}
+
+QSlider::sub-page:horizontal {
+    background: #6200ee;  /* 已滑过的部分，改成蓝色 */
+    border-radius: 3px;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>16</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="length_label">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>220</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string notr="true">99</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>20</y>
+      <width>551</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="key_style_label">
+       <property name="styleSheet">
+        <string notr="true">font: 700 10pt &quot;Noto Sans&quot;;</string>
+       </property>
+       <property name="text">
+        <string>密码类型：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QRadioButton" name="radio_rand">
+         <property name="text">
+          <string>随机</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radio_number">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>数字</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radio_simple">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>简单</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="border1">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>100</y>
+      <width>550</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::HLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="border2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>200</y>
+      <width>550</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::HLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>340</y>
+      <width>551</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="btn" stretch="0,0">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="key_gen_btn">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #6002ee;
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>生成</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="key_copy_btn">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #008b00;
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>复制</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPlainTextEdit" name="key_output">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>250</y>
+      <width>551</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string notr="true"/>
+    </property>
+    <property name="statusTip">
+     <string notr="true"/>
+    </property>
+    <property name="whatsThis">
+     <string notr="true"/>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string notr="true">123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="length_l">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>220</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="text">
+     <string>字符</string>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>120</y>
+      <width>531</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page1">
+     <widget class="QCheckBox" name="checkBox_num">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>84</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>数字</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_symbol">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>50</y>
+        <width>84</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>符号</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_symbol" native="true">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>341</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>341</width>
+         <height>68</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="grid_symbol">
+        <item row="5" column="1">
+         <widget class="QCheckBox" name="checkBox_parenthesis">
+          <property name="text">
+           <string>()</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="checkbox_at">
+          <property name="text">
+           <string>@</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="6">
+         <widget class="QCheckBox" name="checkBox_plus">
+          <property name="text">
+           <string>+</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QCheckBox" name="checkBox_caret">
+          <property name="text">
+           <string>^</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QCheckBox" name="checkBox_hash">
+          <property name="text">
+           <string>#</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="checkBox_exclamation">
+          <property name="text">
+           <string>!</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="6">
+         <widget class="QCheckBox" name="checkBox_hyphen">
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QCheckBox" name="checkBox_asterisk">
+          <property name="text">
+           <string>*</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QCheckBox" name="checkBox_than">
+          <property name="text">
+           <string>&lt;&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QCheckBox" name="checkBox_squarebraket">
+          <property name="text">
+           <string>[]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="5">
+         <widget class="QCheckBox" name="checkBox_equal">
+          <property name="text">
+           <string>=</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="5">
+         <widget class="QCheckBox" name="checkBox_brace">
+          <property name="text">
+           <string>{}</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page2">
+     <widget class="QWidget" name="widget_num" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>511</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>511</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="2">
+         <widget class="QCheckBox" name="checkBox_7">
+          <property name="text">
+           <string>7</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="checkBox_1">
+          <property name="text">
+           <string>1</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QCheckBox" name="checkBox_3">
+          <property name="text">
+           <string>3</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QCheckBox" name="checkBox_2">
+          <property name="text">
+           <string>2</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="checkBox_6">
+          <property name="text">
+           <string>6</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="checkBox_0">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QCheckBox" name="checkBox_4">
+          <property name="text">
+           <string>4</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QCheckBox" name="checkBox_8">
+          <property name="text">
+           <string>8</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="checkBox_5">
+          <property name="text">
+           <string>5</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QCheckBox" name="checkBox_9">
+          <property name="text">
+           <string>9</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QComboBox" name="comboBox_language">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>30</y>
+      <width>71</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>0</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resource.qrc">:/icon/language.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>730</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionlanguage">
+   <property name="text">
+    <string>language</string>
+   </property>
+  </action>
+  <action name="actionchange">
+   <property name="text">
+    <string>change</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>radio_simple</tabstop>
+  <tabstop>length_slider</tabstop>
+  <tabstop>key_gen_btn</tabstop>
+  <tabstop>key_copy_btn</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
