@@ -10,7 +10,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow) {
+      , ui(new Ui::MainWindow) {
     ui->setupUi(this);
     init_all();
     init_translation();
@@ -31,39 +31,55 @@ void MainWindow::changeLanguage(const QString &qmFile) {
     }
 }
 
-void MainWindow::init_translation() {
-    QDir dir("./translations");
+void MainWindow::on_comboBox_language_currentIndexChanged(int index) {
+    QString qmPath = ui->comboBox_language->itemData(index).toString();
+    changeLanguage(qmPath);
+}
 
-    if (!dir.exists()) {
+void MainWindow::init_translation() {
+    QDir localDir(QCoreApplication::applicationDirPath() + "/translations");
+    if (localDir.exists()) {
+        transDirPath = localDir.absolutePath();
+    } else {
         QString appdir = qEnvironmentVariable("APPDIR");
-        if (appdir.isEmpty()) {
-            appdir = QCoreApplication::applicationDirPath();
+        if (!appdir.isEmpty()) {
+            transDirPath = QDir::cleanPath(appdir + "/usr/share/RandKey-QT/translations");
+        } else {
+            transDirPath = QDir::cleanPath(QCoreApplication::applicationDirPath() + "/../share/RandKey-QT/translations");
         }
-        dir.setPath(appdir + "/usr/share/RandKey-QT/translations");
     }
 
-    QString uilang ;
+    qDebug() << "Using translation dir:" << transDirPath;
+
+    QDir dir(transDirPath);
+    if (!dir.exists()) {
+        qWarning() << "Translation directory not found:" << transDirPath;
+        return;
+    }
+
     QStringList qmFiles = dir.entryList(QStringList() << "*.qm", QDir::Files);
 
+    ui->comboBox_language->clear();
     int defaultIndex = -1;
+    QString systemLang = QLocale::system().name();
 
     for (int i = 0; i < qmFiles.size(); ++i) {
         const QString &file = qmFiles[i];
-        QString langName = file.section('_', -2, -1).section('.', 0, 0);
-        ui->comboBox_language->addItem(langName, file);
-        const QStringList uiLanguages = QLocale::system().uiLanguages();
-        for (const QString &locale: uiLanguages) {
-            uilang = QLocale(locale).name();
-        }
+        QString base = QFileInfo(file).baseName();
+        QString langName = base.section('_', 2);
+        QString fullPath = transDirPath + "/" + file;
 
-        if (langName == uilang) {
+        ui->comboBox_language->addItem(langName, fullPath);
+
+        if (langName == systemLang) {
             defaultIndex = i;
         }
     }
 
-    if (defaultIndex >= 0) {
+    if (defaultIndex >= 0)
         ui->comboBox_language->setCurrentIndex(defaultIndex);
-    }
+    else if (!qmFiles.isEmpty())
+        ui->comboBox_language->setCurrentIndex(0);
 }
 
 void MainWindow::init_all() {
@@ -76,6 +92,7 @@ void MainWindow::init_all() {
 
 void MainWindow::on_length_slider_valueChanged(int value) {
     update_slider_label();
+    update_key_output();
 }
 
 void MainWindow::update_slider_label() {
@@ -154,15 +171,5 @@ void MainWindow::on_radio_number_clicked(bool checked) {
     }
 }
 
-void MainWindow::on_length_slider_sliderMoved(int position)
-{
-        update_key_output();
-}
 
-
-void MainWindow::on_comboBox_language_currentIndexChanged(int index)
-{
-    QString qmPath = ui->comboBox_language->itemData(index).toString();
-    changeLanguage(qmPath);
-}
 
