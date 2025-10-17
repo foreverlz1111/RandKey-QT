@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string notr="true">RandKey-QT</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QSlider" name="length_slider">

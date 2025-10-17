@@ -76,6 +76,7 @@ void MainWindow::init_all() {
 
 void MainWindow::on_length_slider_valueChanged(int value) {
     update_slider_label();
+    update_key_output();
 }
 
 void MainWindow::update_slider_label() {
@@ -152,11 +153,6 @@ void MainWindow::on_radio_number_clicked(bool checked) {
         ui->length_slider->setValue(8);
         update_key_output();
     }
-}
-
-void MainWindow::on_length_slider_sliderMoved(int position)
-{
-        update_key_output();
 }
 
 

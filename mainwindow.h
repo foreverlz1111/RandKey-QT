@@ -42,8 +42,6 @@ private slots:
 
     void changeLanguage(const QString &qmFile);
 
-    void on_length_slider_sliderMoved(int position);
-
     void on_comboBox_language_currentIndexChanged(int index);
 
 private:
